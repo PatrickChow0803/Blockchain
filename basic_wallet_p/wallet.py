@@ -24,7 +24,7 @@ def main():
             "Select an Option",
             "*Change ID: 1",
             "*Check Balance: 2",
-            "*Manage Transactions: 3",
+            "*View Transactions: 3",
         ]
         for item in menu:
             print(item)
@@ -37,28 +37,6 @@ def main():
         elif option == "2":
             print(f"Your balance is {data['balance']}")
         elif option == "3":
-            menu = [
-                "Choose an Option",
-                "*View Transactions: 1",
-                "*Make a Transaction: 2",
-            ]
-            for item in menu:
-                print(item)
-            option = input()
+            print(data["transactions"])
 
-            if option == "1":
-                print(data["transactions"])
-
-            elif option == "2":
-                to = input("Who are you sending the money to?:")
-                amount = int(input("How much are you sending?"))
-                # Stops the transaction if the amount trying to send is more than the balance that the user has.
-                if data['balance'] < amount:
-                    print('Amount can\'t be more than your current balance')
-                    continue
-                transaction = {"from": data["id"], "to": to, "amount": amount}
-                data["balance"] -= amount
-
-                data["transactions"].append(transaction)
-        save(data)
 main()
